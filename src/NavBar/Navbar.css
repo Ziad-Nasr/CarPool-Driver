@@ -1,0 +1,56 @@
+/* Navbar.css */
+.navbar {
+  background-color: black; /* Black background */
+  color: white; /* White text */
+  padding: 10px 20px; /* Padding around the navbar */
+  display: flex; /* Use flexbox for layout */
+  align-items: center; /* Center items vertically */
+  justify-content: space-between; /* Distribute space between and around items */
+  position: fixed; /* Fix position at the top */
+  top: 0; /* Align to the top */
+  left: 0; /* Align to the left */
+  right: 0; /* Stretch to the right */
+  z-index: 1000; /* Ensure it stays on top of other elements */
+}
+
+/* Ensure body content doesn't hide under the fixed navbar */
+body {
+  padding-top: 60px; /* Adjust this value based on the height of your navbar */
+}
+
+.navbar ul {
+  list-style-type: none; /* Remove default list styling */
+  margin: 0;
+  padding: 0;
+  display: flex; /* Display list items in a row */
+}
+
+.navbar ul li {
+  margin-right: 20px; /* Space between menu items */
+}
+
+.navbar ul li:last-child {
+  margin-right: 0; /* Remove margin for the last item */
+}
+
+.navbar a {
+  color: white; /* White text for links */
+  text-decoration: none; /* Remove underline from links */
+  font-weight: bold; /* Make font bold */
+}
+
+/* Add a hover effect for links */
+.navbar a:hover {
+  color: #ddd; /* Lighter color on hover */
+}
+.logout-button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.logout-button:hover {
+  color: #ddd;
+}

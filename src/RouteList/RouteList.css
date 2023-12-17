@@ -1,0 +1,45 @@
+.routes-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px; /* Adjust gap between cards */
+}
+
+.route-card {
+  display: flex;
+  width: 100vw;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid grey; /* Border for the card */
+  padding: 15px;
+  background-color: #f9f9f9; /* Card background color */
+}
+
+.route-info {
+  flex-grow: 1;
+}
+
+.route-info h3 {
+  margin-top: 0;
+}
+
+.route-actions {
+  display: flex;
+  gap: 10px; /* Space between buttons */
+}
+
+.confirm-btn,
+.decline-btn {
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.confirm-btn {
+  background-color: #4caf50; /* Green background for confirm */
+  color: white;
+}
+
+.decline-btn {
+  background-color: #f44336; /* Red background for decline */
+  color: white;
+}
