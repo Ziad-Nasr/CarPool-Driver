@@ -27,7 +27,21 @@ const RouteList = ({ initialRoute }) => {
     }
   };
 
-  const decline = () => {
+  const decline = async (requestId) => {
+    try {
+      const requestRef = doc(dbRef, "routes", requestId);
+      await updateDoc(requestRef, {
+        state: "available",
+      });
+      console.log("Request approved");
+      setRoutes((prevRoutes) =>
+        prevRoutes.map((route) =>
+          route.id === requestId ? { ...route, state: "available" } : route
+        )
+      ); // Add any additional actions you want to perform after approval
+    } catch (error) {
+      console.error("Error updating request: ", error);
+    }
     console.log("declined");
   };
 
@@ -65,7 +79,10 @@ const RouteList = ({ initialRoute }) => {
                 >
                   Confirm
                 </button>
-                <button className="decline-btn" onClick={decline}>
+                <button
+                  className="decline-btn"
+                  onClick={() => decline(routes.id)}
+                >
                   Decline
                 </button>
               </div>
