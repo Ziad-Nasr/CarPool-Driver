@@ -25,10 +25,6 @@ export default function Login() {
       })
       .catch((error) => {
         toast.error("Wrong email or password");
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode);
-        console.log(errorMessage);
       });
   };
 

@@ -37,10 +37,12 @@ const Add = () => {
 
   const handleradio = (e) => {
     setTime(e.target.value);
+
     setRide({
       ...ride,
       time: e.target.value,
       driver: auth.currentUser.displayName,
+      riders: [],
     });
   };
 
@@ -82,22 +84,51 @@ const Add = () => {
             onChange={handleChange}
             required
           />
-          <input
-            type="text"
-            name="from"
-            placeholder="From"
-            value={ride.from}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="text"
-            name="to"
-            placeholder="To"
-            value={ride.to}
-            onChange={handleChange}
-            required
-          />
+          {time === "5:30" ? (
+            <select
+              name="from"
+              value={ride.from}
+              onChange={handleChange}
+              required
+            >
+              {/* Options for 'from' dropdown */}
+              <option value="" selected>
+                ---
+              </option>
+              <option value="Gate 3">Gate 3</option>
+              <option value="Gate 4">Gate 4</option>
+              {/* Add more options as needed */}
+            </select>
+          ) : (
+            <input
+              type="text"
+              name="from"
+              placeholder="From"
+              value={ride.from}
+              onChange={handleChange}
+              required
+            />
+          )}
+          {time === "7:30" ? (
+            <select name="to" value={ride.to} onChange={handleChange} required>
+              {/* Options for 'to' dropdown */}
+              <option value="" selected>
+                ---
+              </option>
+              <option value="Gate 3">Gate 3</option>
+              <option value="Gate 4">Gate 4</option>
+              {/* Add more options as needed */}
+            </select>
+          ) : (
+            <input
+              type="text"
+              name="to"
+              placeholder="To"
+              value={ride.to}
+              onChange={handleChange}
+              required
+            />
+          )}
           <div className="time">
             <div>
               <label htmlFor="AM">7:30</label>

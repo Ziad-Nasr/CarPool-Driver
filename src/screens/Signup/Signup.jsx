@@ -5,7 +5,7 @@ import CarPool from "../../assets/CarPool.png";
 import { auth } from "../../firebaseConfig";
 import { NavLink, useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -21,6 +21,9 @@ export default function Signup() {
       .then((userCredential) => {
         const user = userCredential.user;
         toast.success("Account created successfully");
+        updateProfile(user, {
+          displayName: name,
+        });
         navigate("/login");
         console.log(user);
       })

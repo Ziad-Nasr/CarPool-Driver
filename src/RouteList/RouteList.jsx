@@ -2,14 +2,11 @@ import React, { useState } from "react";
 import "./RouteList.css";
 
 import { doc, updateDoc } from "firebase/firestore";
-import { dbRef } from "../firebaseConfig";
+import { auth, dbRef } from "../firebaseConfig";
 
-const RouteList = ({ initialRoute }) => {
-  const [routes, setRoutes] = useState(initialRoute);
-
-  console.log("routes");
-  console.log(routes);
-  console.log("routes");
+const RouteList = ({ initialRoutes }) => {
+  const [routes, setRoutes] = useState(initialRoutes || []);
+  console.log(auth.currentUser.displayName);
   const approve = async (requestId) => {
     try {
       const requestRef = doc(dbRef, "routes", requestId);
@@ -26,7 +23,6 @@ const RouteList = ({ initialRoute }) => {
       console.error("Error updating request: ", error);
     }
   };
-
   const decline = async (requestId) => {
     try {
       const requestRef = doc(dbRef, "routes", requestId);
@@ -49,7 +45,9 @@ const RouteList = ({ initialRoute }) => {
     <div className="routes-container">
       {routes
         .filter(
-          (routes) => routes.state === "requested" && routes.driver === "Nasr"
+          (routes) =>
+            routes.state === "requested" &&
+            routes.driver === auth.currentUser.displayName
         )
         .map((routes) => (
           <div className="route-card">
@@ -67,7 +65,7 @@ const RouteList = ({ initialRoute }) => {
                 <b>Seats Left:</b> {routes.seats}
               </p>
               <p>
-                <b>Departure:</b> {routes.time}
+                <b>Time:</b> {routes.time}
               </p>
               <p>
                 <b>user:</b> {routes.name}

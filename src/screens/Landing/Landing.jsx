@@ -11,29 +11,31 @@ export default function Landing() {
   const navigate = useNavigate();
   const [rides, setRides] = useState([]);
   const [loading, setLoading] = useState(true);
+  const auth = getAuth();
+
+  console.log(rides);
 
   useEffect(() => {
-    const auth = getAuth();
-
-    const unsubscribe = () => {
-      if (auth.currentUser == null) {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, fetch rides
+        fetchRides();
+      } else {
         // No user is signed in, redirect to the login page
         navigate("/");
-      } else {
-        fetchRides();
       }
-    };
+    });
 
+    // Define fetchRides inside useEffect
     const fetchRides = async () => {
       try {
         const db = getFirestore();
-        const ridesCollection = collection(db, "routes");
+        const ridesCollection = collection(db, "requests");
         const rideSnapshot = await getDocs(ridesCollection);
         const ridesList = rideSnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
-        // console.log(ridesList);
         setRides(ridesList);
         setLoading(false);
       } catch (error) {
@@ -41,15 +43,17 @@ export default function Landing() {
         setLoading(false);
       }
     };
-    unsubscribe();
-  }, []);
+
+    // Return the unsubscribe function to clean up the subscription
+    return () => unsubscribe();
+  }, [auth, navigate]);
+
   return loading ? (
     <InfinitySpin className="loader" color="black" />
   ) : (
     <div>
       <Navbar />
-      {console.log(rides[0]["title"])}
-      <RouteList initialRoute={rides} />
+      <RouteList initialRoutes={rides} />
     </div>
   );
 }
