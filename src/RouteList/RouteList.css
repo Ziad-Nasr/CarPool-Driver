@@ -1,17 +1,23 @@
 .routes-container {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   gap: 10px; /* Adjust gap between cards */
+  justify-content: space-evenly;
 }
 
 .route-card {
   display: flex;
-  width: 100vw;
+  width: 35vw;
+  max-width: 90vw;
+  flex-basis: calc(
+    33% - 5px
+  ); /* Adjust width for 3 cards per row, accounting for the gap */
   justify-content: space-between;
   align-items: center;
   border: 1px solid grey; /* Border for the card */
   padding: 15px;
   background-color: #f9f9f9; /* Card background color */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
 .route-info {
@@ -25,6 +31,7 @@
 .route-actions {
   display: flex;
   gap: 10px; /* Space between buttons */
+  justify-content: center;
 }
 
 .confirm-btn,
