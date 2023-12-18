@@ -27,9 +27,10 @@ export default function Landing() {
     const fetchRides = async () => {
       try {
         const db = getFirestore();
-        const ridesCollection = collection(db, "requested");
+        const ridesCollection = collection(db, "routes");
         const rideSnapshot = await getDocs(ridesCollection);
         const ridesList = rideSnapshot.docs.map((doc) => ({
+          id: doc.id,
           ...doc.data(),
         }));
         // console.log(ridesList);
@@ -48,7 +49,7 @@ export default function Landing() {
     <div>
       <Navbar />
       {console.log(rides[0]["title"])}
-      <RouteList routes={rides} />
+      <RouteList initialRoute={rides} />
     </div>
   );
 }
