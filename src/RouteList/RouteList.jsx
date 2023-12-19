@@ -17,21 +17,17 @@ const RouteList = ({ initialRoutes }) => {
 
   const approve = async (requestId) => {
     try {
-      const requestRef = doc(dbRef, "routes", requestId);
-      await updateDoc(requestRef, {
-        state: "approved",
-      });
+      const requestRef = doc(dbRef, "requests", requestId);
+      await deleteDoc(requestRef);
       console.log("Request approved");
-      setRoutes((prevRoutes) =>
-        prevRoutes.map((route) =>
-          route.id === requestId ? { ...route, state: "approved" } : route
-        )
-      ); // Add any additional actions you want to perform after approval
     } catch (error) {
       console.error("Error updating request: ", error);
     }
+    setRoutes((prevRoutes) =>
+      prevRoutes.filter((route) => route.id !== requestId)
+    );
   };
-  
+
   const decline = async (requestId) => {
     try {
       const requestRef = doc(dbRef, "requests", requestId);
