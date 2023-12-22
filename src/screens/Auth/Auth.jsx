@@ -8,15 +8,15 @@ const Auth = () => {
   const auth = getAuth();
 
   useEffect(() => {
-    const unsubscribe = () => {
-      if (auth.currentUser == null) {
-        // No user is signed in, redirect to the login page
-        navigate("/login");
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, navigate to the landing page
+        navigate("/landing");
       } else {
-        // No user is signed in, redirect to the login page
-        navigate("/");
+        // No user is signed in, navigate to the login page
+        navigate("/login");
       }
-    };
+    });
 
     // Clean up the subscription on unmount
     return () => unsubscribe();
