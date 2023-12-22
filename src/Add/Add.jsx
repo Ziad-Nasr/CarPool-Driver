@@ -66,7 +66,7 @@ const Add = () => {
       const firestoreTimestamp = Timestamp.fromDate(selectedDate);
       const rideToSave = {
         ...ride,
-        date: firestoreTimestamp,
+        time: firestoreTimestamp,
       };
       await addDoc(collection(dbRef, "routes"), rideToSave);
       alert("Ride added successfully!");

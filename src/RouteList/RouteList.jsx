@@ -13,7 +13,6 @@ import { auth, dbRef } from "../firebaseConfig";
 
 const RouteList = ({ initialRoutes }) => {
   const [routes, setRoutes] = useState(initialRoutes || []);
-  console.log(auth.currentUser.displayName);
 
   const approve = async (requestId) => {
     try {
@@ -67,14 +66,11 @@ const RouteList = ({ initialRoutes }) => {
   return (
     <div className="routes-container">
       {routes
-        .filter(
-          (routes) =>
-            routes.driver === auth.currentUser.displayName
-        )
+        .filter((routes) => routes.driver === auth.currentUser.displayName)
         .map((routes) => (
           <div className="route-card">
             <div className="route-info">
-              <h3>Title: {routes.title}</h3>{" "}
+              <h3>Title: {routes.title}</h3>
               {/* Assuming you have a title in your route data */}
               <p>
                 <b>Source:</b> {routes.from}
@@ -87,7 +83,10 @@ const RouteList = ({ initialRoutes }) => {
                 <b>Seats Left:</b> {routes.seats}
               </p>
               <p>
-                <b>Time:</b> {routes.time}
+                <b>Time:</b>{" "}
+                {routes.time
+                  ? new Date(routes.time).toLocaleTimeString()
+                  : "Loading..."}
               </p>
               <p>
                 <b>user:</b> {routes.name}

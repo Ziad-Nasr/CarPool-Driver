@@ -1,54 +1,52 @@
-.routes-container {
+.rcontainer {
   display: flex;
   flex-direction: column;
-  gap: 10px; /* Adjust gap between cards */
+  gap: 10px;
   justify-content: center;
 }
 
-.route-card {
+.rcard {
   display: flex;
-  width: 80vw; /* Adjust the width as needed */
-  max-width: 90vw; /* Adjust the maximum width as needed */
+  width: 80vw;
+
   justify-content: space-between;
   align-items: center;
-  border: 5px solid grey; /* Border for the card */
+  border: 5px solid grey;
   padding: 10px;
-  background-color: #e8e8e8; /* Card background color */
+  background-color: #e8e8e8;
   box-sizing: border-box;
   margin-bottom: 10px;
-  /* Include padding and border in the element's total width and height */
 }
 
-.route-info {
+.rinfo {
   flex-grow: 1;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 }
 
-.route-info h3 {
+.rinfo h3 {
   margin-top: 0;
 }
 
-.route-actions {
+.ractions {
   display: flex;
-  gap: 10px; /* Space between buttons */
+  gap: 10px;
   justify-content: center;
 }
 
-.confirm-btn,
-.decline-btn {
+.run-btn {
   padding: 5px 10px;
   border: none;
   cursor: pointer;
 }
 
-.confirm-btn {
-  background-color: #4caf50; /* Green background for confirm */
+.run-btn {
+  background-color: #4caf50;
   color: white;
 }
 
-.decline-btn {
-  background-color: #f44336; /* Red background for decline */
+.cmp-btn {
+  background-color: gray;
   color: white;
 }
