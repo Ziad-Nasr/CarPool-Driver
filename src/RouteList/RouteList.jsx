@@ -69,7 +69,6 @@ const RouteList = ({ initialRoutes }) => {
       {routes
         .filter(
           (routes) =>
-            routes.state === "requested" &&
             routes.driver === auth.currentUser.displayName
         )
         .map((routes) => (

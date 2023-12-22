@@ -42,6 +42,7 @@ const Add = () => {
       ...ride,
       time: e.target.value,
       driver: auth.currentUser.displayName,
+      driveremail: auth.currentUser.email,
       riders: [],
     });
   };

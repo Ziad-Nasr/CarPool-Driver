@@ -31,7 +31,7 @@ const Navbar = () => {
           <a href="/add">Add a Ride</a>
         </li>
         <li>
-          <a href="/contact">Contact</a>
+          <a href="/rides">Your Rides</a>
         </li>
       </ul>
       <button onClick={handleLogout} className="logout-button">
