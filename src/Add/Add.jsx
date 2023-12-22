@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 import "./Add.css";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, Timestamp } from "firebase/firestore";
 import { dbRef } from "../firebaseConfig";
 const Add = () => {
   const navigate = useNavigate();
@@ -18,10 +18,12 @@ const Add = () => {
     to: "",
     time: "",
     seats: 2,
-    riders: [],
     state: "available",
     // Add other fields as necessary
   });
+
+  const today = new Date().toISOString().split("T")[0];
+
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -54,7 +56,19 @@ const Add = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await addDoc(collection(dbRef, "routes"), ride);
+      let selectedDate = new Date(ride.date);
+
+      if (ride.time === "5:30") {
+        selectedDate.setHours(17, 30);
+      } else if (ride.time === "7:30") {
+        selectedDate.setHours(7, 30);
+      }
+      const firestoreTimestamp = Timestamp.fromDate(selectedDate);
+      const rideToSave = {
+        ...ride,
+        date: firestoreTimestamp,
+      };
+      await addDoc(collection(dbRef, "routes"), rideToSave);
       alert("Ride added successfully!");
       setRide({
         title: "",
@@ -62,7 +76,6 @@ const Add = () => {
         to: "",
         time: "",
         seats: "",
-        // Reset other fields
       });
     } catch (error) {
       console.error("Error adding ride: ", error);
@@ -132,7 +145,7 @@ const Add = () => {
           )}
           <div className="time">
             <div>
-              <label htmlFor="AM">7:30</label>
+              <label htmlFor="AM">7:30 AM</label>
               <input
                 id="AM"
                 type="radio"
@@ -144,7 +157,7 @@ const Add = () => {
               />
             </div>
             <div>
-              <label htmlFor="PM">5:30</label>
+              <label htmlFor="PM">5:30 PM</label>
               <input
                 id="PM"
                 type="radio"
@@ -156,6 +169,14 @@ const Add = () => {
               />
             </div>
           </div>
+          <input
+            type="date"
+            name="date"
+            value={ride.date}
+            onChange={handleChange}
+            required
+            min={today}
+          />
           <input
             type="number"
             name="seats"
