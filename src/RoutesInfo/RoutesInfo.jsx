@@ -3,9 +3,12 @@ import "./RoutesInfo.css";
 
 import {
   arrayRemove,
+  collection,
   deleteDoc,
   doc,
   getDoc,
+  getDocs,
+  getFirestore,
   increment,
   updateDoc,
 } from "firebase/firestore";
@@ -14,6 +17,24 @@ import { auth, dbRef } from "../firebaseConfig";
 const RouteInfo = ({ initialRoutes }) => {
   const [routes, setRoutes] = useState(initialRoutes || []);
   console.log(auth.currentUser.displayName);
+
+  const run = async (document) => {
+    try {
+      const db = getFirestore();
+      const rideRef = doc(db, "routes", document);
+      await updateDoc(rideRef, { state: "running" });
+      setRoutes(
+        routes.map((route) => {
+          if (route.id === document) {
+            return { ...route, state: "running" };
+          }
+          return route;
+        })
+      );
+    } catch (error) {
+      console.error("Error fetching rides:", error);
+    }
+  };
 
   return (
     <div className="routes-container">
@@ -42,6 +63,16 @@ const RouteInfo = ({ initialRoutes }) => {
               <p>
                 <b>State:</b> {routes.state}
               </p>
+              <div className="route-actions">
+                {routes.state !== "running" && (
+                  <button
+                    className="confirm-btn"
+                    onClick={() => run(routes.id)}
+                  >
+                    Running
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         ))}
