@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./signup.css";
+import "../Login/Login.css";
 import InputField from "../../InputFeild/InputField";
 import CarPool from "../../assets/CarPool.png";
 import { auth } from "../../firebaseConfig";
