@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./login.css";
 import InputField from "../../InputFeild/InputField";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import CarPool from "../../assets/CarPool.png";
+import CarPool from "../../assets/carpool.png";
 import { auth } from "../../firebaseConfig";
 import { NavLink, useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
