@@ -76,7 +76,7 @@ export default function Signup() {
         <p className="NewAcc">
           Already signed up?
           <a className="signUp">
-            <Link to="/signup"> Log in</Link>
+            <Link to="/login"> Log in</Link>
           </a>
           .
         </p>

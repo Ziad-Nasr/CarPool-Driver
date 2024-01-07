@@ -75,7 +75,7 @@ const Add = () => {
         from: "",
         to: "",
         time: "",
-        seats: "",
+        seats: 2,
       });
     } catch (error) {
       console.error("Error adding ride: ", error);
@@ -187,7 +187,6 @@ const Add = () => {
             max="5"
             min="1"
           />
-          {/* Add other input fields as necessary */}
           <button type="submit" className="submit">
             Add Ride
           </button>

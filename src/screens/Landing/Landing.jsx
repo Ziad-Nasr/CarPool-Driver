@@ -97,7 +97,8 @@ export default function Landing() {
             ride.driveremail == auth.currentUser.email
           );
         });
-
+console.log("ridesList0")
+console.log(ridesList0)
         let ridesList2 = ridesList0.filter((ride) => {
           const isFiveThirtyPM =
             ride.time.getHours() === 17 && ride.time.getMinutes() === 30;
