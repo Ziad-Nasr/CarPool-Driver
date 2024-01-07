@@ -3,7 +3,7 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import Login from "./screens/Login/Login";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import Landing from "./screens/Landing/Landing";
 import { ToastContainer } from "react-toastify";
@@ -16,7 +16,7 @@ import Rides from "./Rides/Rides";
 function App() {
   return (
     <>
-      <Router basename="CarPool-Driver">
+      <BrowserRouter>
         <ToastContainer theme="colored" />
         <Routes>
           <Route path="/" element={<Auth />} />
@@ -26,7 +26,7 @@ function App() {
           <Route path="/add" element={<Add />} />
           <Route path="/rides" element={<Rides />} />
         </Routes>
-      </Router>
+      </BrowserRouter>
     </>
   );
 }
