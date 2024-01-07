@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./landing.css";
+import "./Landing.css";
 import Navbar from "../../NavBar/Navbar";
 import RouteList from "../../RouteList/RouteList";
 import {
