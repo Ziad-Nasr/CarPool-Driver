@@ -16,7 +16,7 @@ import Rides from "./Rides/Rides";
 function App() {
   return (
     <>
-      <BrowserRouter basename="CarPool-Driver">
+      <BrowserRouter>
         <ToastContainer theme="colored" />
         <Routes>
           <Route path="/" element={<Auth />} />
