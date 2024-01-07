@@ -50,7 +50,11 @@ const Add = () => {
   };
 
   const handleChange = (e) => {
-    setRide({ ...ride, [e.target.name]: e.target.value });
+    if (e.target.name === "seats") {
+      setRide({ ...ride, [e.target.name]: parseInt(e.target.value, 10) });
+    } else {
+      setRide({ ...ride, [e.target.name]: e.target.value });
+    }
   };
 
   const handleSubmit = async (e) => {
