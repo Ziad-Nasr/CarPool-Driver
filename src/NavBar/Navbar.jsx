@@ -25,13 +25,19 @@ const Navbar = () => {
     <nav className="navbar">
       <ul>
         <li>
-          <a href="/">Home</a>
+          <a>
+            <Link to="/signup">Home</Link>
+          </a>
         </li>
         <li>
-          <a href="/add">Add a Ride</a>
+          <a>
+            <Link to="/signup">Add Ride</Link>
+          </a>
         </li>
         <li>
-          <a href="/rides">Your Rides</a>
+          <a>
+            <Link to="/signup">Your Rides</Link>
+          </a>
         </li>
       </ul>
       <button onClick={handleLogout} className="logout-button">
